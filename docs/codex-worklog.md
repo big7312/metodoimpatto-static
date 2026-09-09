@@ -51,7 +51,13 @@ Uso previsto:
 - nuova versione principale del sito;
 - contenuti in Markdown;
 - build statica per Cloudflare Pages;
-- futuro repository GitHub separato.
+- repository GitHub separato dedicato alla versione statica.
+
+Repository GitHub:
+
+```text
+https://github.com/big7312/metodoimpatto-static
+```
 
 Commit iniziale locale:
 
@@ -220,3 +226,16 @@ Perche:
 - evitare perdita di contesto tra sessioni;
 - rendere esplicite le decisioni tecniche;
 - avere prompt pronti per chiedere a Codex modifiche coerenti.
+
+### 2026-09-09 - Collegamento repository GitHub statico
+
+Cosa e stato fatto:
+
+- scelto il repository GitHub dedicato alla versione Astro: `https://github.com/big7312/metodoimpatto-static`;
+- mantenuto il progetto Astro separato dal repository WordPress.
+
+Perche:
+
+- evitare di mischiare WordPress e Astro nello stesso repository;
+- preparare un collegamento pulito con Cloudflare Pages;
+- rendere il deploy statico indipendente dal sito WordPress locale.
