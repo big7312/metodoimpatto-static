@@ -233,9 +233,15 @@ Cosa e stato fatto:
 
 - scelto il repository GitHub dedicato alla versione Astro: `https://github.com/big7312/metodoimpatto-static`;
 - mantenuto il progetto Astro separato dal repository WordPress.
+- pubblicato il branch `main` del progetto Astro su GitHub.
 
 Perche:
 
 - evitare di mischiare WordPress e Astro nello stesso repository;
 - preparare un collegamento pulito con Cloudflare Pages;
 - rendere il deploy statico indipendente dal sito WordPress locale.
+
+Nota operativa:
+
+- il progetto locale e stato aggiunto ai `safe.directory` di Git per consentire il push con l'utente Windows;
+- il repository locale ora traccia `origin/main`.
