@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MethodSteps from "../components/MethodSteps.astro";
+import NewsletterBox from "../components/NewsletterBox.astro";
+---
+
+<BaseLayout title="Il Metodo IMPATTO | Metodo IMPATTO">
+  <article class="prose">
+    <p class="eyebrow">Pillar page</p>
+    <h1>Il Metodo IMPATTO</h1>
+    <p class="lead">
+      Quando si parte dagli strumenti, spesso si collezionano prove scollegate. Il Metodo IMPATTO fa il contrario: chiarisce il risultato, osserva il processo, progetta una soluzione e misura cosa succede.
+    </p>
+    <h2>Perche il risultato viene prima della tecnologia</h2>
+    <p>
+      Se un'azienda dice "voglio usare l'AI", non ha ancora definito il problema. Se invece dice "voglio rispondere piu in fretta alle richieste" o "ridurre il tempo speso in attivita ripetitive", abbiamo una base su cui lavorare.
+    </p>
+  </article>
+  <section class="section">
+    <MethodSteps />
+  </section>
+  <NewsletterBox compact />
+</BaseLayout>

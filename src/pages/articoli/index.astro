@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import NewsletterBox from "../../components/NewsletterBox.astro";
+import { getCollection } from "astro:content";
+
+const articles = (await getCollection("articles"))
+  .filter((article) => !article.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout title="Articoli | Metodo IMPATTO">
+  <section class="prose">
+    <p class="eyebrow">Articoli</p>
+    <h1>Note pratiche sull'AI che entra nei processi.</h1>
+    <p class="lead">Pochi pezzi, con un problema chiaro e una domanda utile. Il blog parte da qui.</p>
+  </section>
+  <section class="grid">
+    {articles.map((article) => (
+      <a class="article-card" href={`/articoli/${article.slug}/`}>
+        <span class="tag">{article.data.category}</span>
+        <h3>{article.data.title}</h3>
+        <p>{article.data.description}</p>
+        <time datetime={article.data.pubDate.toISOString()}>
+          {article.data.pubDate.toLocaleDateString("it-IT", { day: "2-digit", month: "long", year: "numeric" })}
+        </time>
+      </a>
+    ))}
+  </section>
+  <NewsletterBox compact />
+</BaseLayout>

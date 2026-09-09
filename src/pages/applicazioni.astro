@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NewsletterBox from "../components/NewsletterBox.astro";
+---
+
+<BaseLayout title="Applicazioni AI | Metodo IMPATTO">
+  <section class="prose">
+    <p class="eyebrow">Applicazioni</p>
+    <h1>Dove l'AI puo aiutare davvero.</h1>
+    <p class="lead">Non tutto merita automazione. Si parte dai punti in cui un processo e frequente, misurabile e abbastanza chiaro da essere migliorato.</p>
+  </section>
+  <section class="grid">
+    <article class="panel"><h3>Marketing</h3><p>Ricerca, brief, revisione di contenuti e analisi di domande ricorrenti.</p></article>
+    <article class="panel"><h3>Vendite</h3><p>Qualifica dei lead, follow-up, risposte standard e materiali commerciali piu coerenti.</p></article>
+    <article class="panel"><h3>Organizzazione</h3><p>Procedure interne, checklist, report sintetici e passaggi ripetitivi.</p></article>
+  </section>
+  <NewsletterBox compact />
+</BaseLayout>

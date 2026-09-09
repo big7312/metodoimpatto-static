@@ -1,0 +1,104 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MethodSteps from "../components/MethodSteps.astro";
+import NewsletterBox from "../components/NewsletterBox.astro";
+import { getCollection } from "astro:content";
+
+const articles = (await getCollection("articles"))
+  .filter((article) => !article.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Metodo IMPATTO</p>
+      <h1>AI utile, prima degli strumenti.</h1>
+      <p class="lead">
+        Un modo pratico per capire dove l'intelligenza artificiale puo aiutare davvero piccole imprese e professionisti.
+      </p>
+      <div class="cta-row">
+        <a class="button" href="/newsletter/">Ricevi il Prompt della Settimana</a>
+        <a class="button secondary" href="/metodo/">Leggi il metodo</a>
+      </div>
+    </div>
+    <aside class="hero-card">
+      <p class="eyebrow">Il punto di partenza</p>
+      <p>
+        Non si parte dal tool del momento. Si parte da una domanda piu scomoda e piu utile: quale risultato deve migliorare il lavoro?
+      </p>
+      <div class="metric-strip">
+        <div><strong>I</strong><span>identificare il risultato</span></div>
+        <div><strong>M</strong><span>mappare il processo reale</span></div>
+        <div><strong>T</strong><span>testare prima di trasformare in metodo</span></div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="section split">
+    <div>
+      <p class="eyebrow">Il problema</p>
+      <h2 class="statement">L'AI non fallisce sempre per colpa dello strumento.</h2>
+    </div>
+    <div class="text-stack">
+      <p>
+        Spesso fallisce per mancanza di processo: si prova un'app, poi un'altra, poi un prompt copiato da qualche parte.
+      </p>
+      <p>
+        Metodo IMPATTO rimette ordine: risultato, processo, test, dati. Solo dopo ha senso parlare di AI.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">Il metodo</p>
+    <h2>Sette passaggi, una sola domanda: sta migliorando davvero il lavoro?</h2>
+    <MethodSteps />
+  </section>
+
+  <section class="section">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Applicazioni</p>
+        <h2>Dove ha senso iniziare.</h2>
+      </div>
+      <div class="grid">
+        <article class="panel">
+          <h3>Marketing</h3>
+          <p>Brief, contenuti, analisi delle domande ricorrenti e revisione editoriale.</p>
+        </article>
+        <article class="panel">
+          <h3>Vendite</h3>
+          <p>Qualifica dei contatti, follow-up, materiali commerciali e risposte piu coerenti.</p>
+        </article>
+        <article class="panel">
+          <h3>Processi</h3>
+          <p>Procedure interne, checklist, documentazione e passaggi ripetitivi da rendere leggibili.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <NewsletterBox />
+  </section>
+
+  <section class="section">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Articoli</p>
+        <h2>Prime note di lavoro.</h2>
+      </div>
+      <div class="grid">
+        {articles.map((article) => (
+          <a class="article-card" href={`/articoli/${article.slug}/`}>
+            <span class="tag">{article.data.category}</span>
+            <h3>{article.data.title}</h3>
+            <p>{article.data.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

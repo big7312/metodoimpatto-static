@@ -1,0 +1,21 @@
+---
+const steps = [
+  ["I", "Identificare", "Chiarire il risultato da migliorare prima di parlare di strumenti."],
+  ["M", "Mappare", "Osservare il processo reale, con colli di bottiglia e responsabilita."],
+  ["P", "Progettare", "Disegnare una soluzione piccola, verificabile e sostenibile."],
+  ["A", "Applicare", "Usare l'AI in un ruolo preciso, non come strato magico."],
+  ["T", "Testare", "Misurare cosa cambia prima di trasformarlo in metodo."],
+  ["T", "Trasferire", "Rendere il flusso ripetibile, documentato e comprensibile."],
+  ["O", "Ottimizzare", "Migliorare con dati, feedback e revisione umana."]
+];
+---
+
+<ol class="method-steps">
+  {steps.map(([letter, title, text]) => (
+    <li>
+      <span>{letter}</span>
+      <h3>{title}</h3>
+      <p>{text}</p>
+    </li>
+  ))}
+</ol>

@@ -1,0 +1,32 @@
+---
+const compact = Astro.props.compact ?? false;
+---
+
+<section class:list={["newsletter-panel", { compact }]} aria-labelledby="newsletter-title">
+  <div class="newsletter-copy">
+    <p class="eyebrow">Il Prompt della Settimana</p>
+    <h2 id="newsletter-title">Una mail breve da tenere aperta mentre lavori.</h2>
+    <p>
+      Ogni venerdi: un caso reale, un prompt commentato e una domanda per capire se l'AI sta davvero aiutando il processo.
+    </p>
+    <ul class="signal-list">
+      <li><strong>1 prompt</strong><span>da copiare, adattare e capire.</span></li>
+      <li><strong>1 caso</strong><span>per vedere dove il metodo regge.</span></li>
+      <li><strong>1 criterio</strong><span>per scegliere meglio il prossimo test.</span></li>
+    </ul>
+  </div>
+  <form class="newsletter-form" action="#" method="post">
+    <label>
+      Nome
+      <input type="text" name="name" placeholder="Il tuo nome" disabled />
+      <small>Cosi posso salutarti senza sembrare un robot.</small>
+    </label>
+    <label>
+      Email
+      <input type="email" name="email" placeholder="nome@azienda.it" disabled />
+      <small>Ti mando solo la newsletter. Niente spam, niente sequenze infinite.</small>
+    </label>
+    <button type="submit" disabled>Ricevi il prossimo prompt</button>
+    <p class="form-note">Placeholder pronto per Brevo: double opt-in e consenso privacy separato.</p>
+  </form>
+</section>
