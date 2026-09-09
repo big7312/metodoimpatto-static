@@ -19,3 +19,13 @@ npm run build
 ## Newsletter
 
 Il componente newsletter e pronto per Brevo. In questa prima versione mostra un fallback editoriale coerente con la rubrica "Il Prompt della Settimana".
+
+## Diario di lavoro
+
+Il contesto operativo del progetto vive in:
+
+```text
+docs/codex-worklog.md
+```
+
+Aggiornarlo a ogni modifica significativa: decisioni, passaggi, motivazioni e prompt utili per riprendere il lavoro con Codex.
