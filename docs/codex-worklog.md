@@ -154,10 +154,41 @@ Build output directory: dist
 Root directory: /
 ```
 
-Prima del deploy serve:
+Stato configurazione:
 
-- creare un repository GitHub dedicato, consigliato `metodoimpatto-astro` o `metodoimpatto-static`;
-- collegare il repository a Cloudflare Pages;
+```text
+Configurato manualmente da Cloudflare Dashboard il 2026-09-09.
+```
+
+Passaggi eseguiti:
+
+1. Aperto il menu `Workers & Pages`.
+2. Cliccato `Create`.
+3. Scelto `Pages`.
+4. Selezionato `Connect to Git`.
+5. Collegato GitHub.
+6. Selezionato il repository Astro `big7312/metodoimpatto-static`.
+7. Impostate le opzioni di build:
+
+```text
+Framework preset: Astro
+Build command: npm run build
+Build output directory: dist
+Root directory: /
+```
+
+8. Cliccato `Save and Deploy`.
+
+Verifiche da fare dopo il primo deploy:
+
+- controllare che Cloudflare completi la build senza errori;
+- aprire l'URL `pages.dev` generato;
+- verificare home, newsletter, articoli e responsive mobile;
+- collegare il dominio definitivo solo dopo controllo visuale;
+- aggiornare questo documento con URL di preview e URL di produzione.
+
+Prima del dominio definitivo serve:
+
 - configurare dominio e redirect quando la versione Astro sara pronta.
 
 ## Prompt utili per Codex
@@ -245,3 +276,20 @@ Nota operativa:
 
 - il progetto locale e stato aggiunto ai `safe.directory` di Git per consentire il push con l'utente Windows;
 - il repository locale ora traccia `origin/main`.
+
+### 2026-09-09 - Configurazione Cloudflare Pages
+
+Cosa e stato fatto:
+
+- collegato Cloudflare Pages al repository GitHub `big7312/metodoimpatto-static`;
+- scelto preset `Astro`;
+- impostato comando build `npm run build`;
+- impostata cartella output `dist`;
+- mantenuta root directory `/`;
+- avviato il primo deploy da Cloudflare.
+
+Perche:
+
+- abilitare deploy automatici da GitHub;
+- evitare upload manuali via FTP;
+- pubblicare la versione Astro come sito statico veloce e separato da WordPress.
