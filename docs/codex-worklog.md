@@ -1,6 +1,6 @@
 # Metodo IMPATTO - Diario di lavoro Codex
 
-Ultimo aggiornamento: 2026-09-09
+Ultimo aggiornamento: 2026-09-10
 
 Questo documento serve a tenere memoria delle decisioni prese, dei passaggi tecnici e dei prompt utili per riprendere il lavoro con Codex senza ricostruire ogni volta il contesto.
 
@@ -293,3 +293,18 @@ Perche:
 - abilitare deploy automatici da GitHub;
 - evitare upload manuali via FTP;
 - pubblicare la versione Astro come sito statico veloce e separato da WordPress.
+
+### 2026-09-10 - Pubblicazione articolo su priorita clienti e CRM
+
+Cosa e stato fatto:
+
+- aggiunto l'articolo `ai-priorita-clienti-crm.md`;
+- impostata `pubDate: 2026-09-06`;
+- scelta categoria `Vendite`;
+- rimosso un file articolo non tracciato rimasto dal turno interrotto precedente, per evitare pubblicazioni non richieste.
+
+Perche:
+
+- pubblicare un contenuto gia pronto senza passare dal database WordPress;
+- testare il flusso editoriale Astro: Markdown, build, commit, push e deploy automatico Cloudflare;
+- mantenere il blog coerente con il Metodo IMPATTO: prima dati e processo, poi AI.
