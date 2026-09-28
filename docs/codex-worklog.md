@@ -308,3 +308,20 @@ Perche:
 - pubblicare un contenuto gia pronto senza passare dal database WordPress;
 - testare il flusso editoriale Astro: Markdown, build, commit, push e deploy automatico Cloudflare;
 - mantenere il blog coerente con il Metodo IMPATTO: prima dati e processo, poi AI.
+
+### 2026-09-28 - Aggiornamento palette colori
+
+Cosa e stato fatto:
+
+- aggiornata la palette CSS senza modificare layout, struttura, tipografia, spaziature o contenuti;
+- impostato lo sfondo avorio con gradienti molto leggeri blu e corallo;
+- adottato `#172033` per testi e titoli;
+- adottato `#3454D1` come colore principale per brand, link e azioni;
+- riservato `#FF6B4A` agli accenti e usato `#E8EEFF` per superfici secondarie e card;
+- armonizzati bordi, ombre, form e testi secondari con la nuova direzione editoriale.
+
+Perche:
+
+- rendere il sito piu dinamico e moderno senza introdurre nuovi elementi grafici;
+- aumentare la riconoscibilita del blu indaco mantenendo il corallo non dominante;
+- dare profondita allo sfondo senza trasformarlo in un gradiente decorativo evidente.

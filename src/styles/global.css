@@ -1,15 +1,15 @@
 :root {
   color-scheme: light;
-  --ink: #102033;
-  --muted: #607087;
-  --paper: #f4efe7;
-  --paper-strong: #fffaf2;
-  --line: rgba(16, 32, 51, 0.16);
-  --accent: #c45a2b;
-  --accent-dark: #813717;
-  --blue: #173863;
+  --ink: #172033;
+  --muted: #5f6c84;
+  --paper: #f5f2ea;
+  --paper-strong: #e8eeff;
+  --line: rgba(23, 32, 51, 0.16);
+  --accent: #ff6b4a;
+  --accent-dark: #d94e34;
+  --blue: #3454d1;
   --radius: 28px;
-  --shadow: 0 24px 80px rgba(16, 32, 51, 0.12);
+  --shadow: 0 24px 80px rgba(23, 32, 51, 0.12);
   font-family: "Fira Sans", "Segoe UI", sans-serif;
 }
 
@@ -51,8 +51,9 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(circle at 10% 0%, rgba(196, 90, 43, 0.18), transparent 30rem),
-    linear-gradient(120deg, #fff9ef 0%, #efe6d7 44%, #e9edf1 100%);
+    radial-gradient(circle at 10% 0%, rgba(52, 84, 209, 0.12), transparent 32rem),
+    radial-gradient(circle at 90% 15%, rgba(255, 107, 74, 0.08), transparent 28rem),
+    linear-gradient(135deg, #f8f6f0 0%, #f5f2ea 48%, #eef1fa 100%);
   font-size: 18px;
   line-height: 1.65;
 }
@@ -110,7 +111,7 @@ img {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  background: var(--ink);
+  background: var(--blue);
   color: white;
   font-size: 0.8rem;
   letter-spacing: 0.06em;
@@ -137,7 +138,7 @@ button {
 }
 
 .site-nav a:hover {
-  background: rgba(255, 255, 255, 0.62);
+  background: rgba(232, 238, 255, 0.72);
   color: var(--ink);
 }
 
@@ -189,7 +190,7 @@ h3 {
 .lead {
   max-width: 43rem;
   margin: 1.25rem 0 0;
-  color: #34465c;
+  color: var(--muted);
   font-size: clamp(1.2rem, 2vw, 1.55rem);
 }
 
@@ -197,7 +198,7 @@ h3 {
 .panel,
 .newsletter-panel,
 .article-card {
-  background: rgba(255, 255, 255, 0.68);
+  background: rgba(232, 238, 255, 0.68);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -241,8 +242,8 @@ button {
   justify-content: center;
   min-height: 3rem;
   padding: 0.78rem 1.1rem;
-  border: 1px solid var(--ink);
-  background: var(--ink);
+  border: 1px solid var(--blue);
+  background: var(--blue);
   color: white;
   font: inherit;
   font-weight: 700;
@@ -251,7 +252,7 @@ button {
 
 .button.secondary {
   background: transparent;
-  color: var(--ink);
+  color: var(--blue);
 }
 
 .section {
@@ -291,7 +292,7 @@ button {
 .method-steps li {
   min-height: 15rem;
   padding: 1.1rem;
-  background: rgba(255, 255, 255, 0.56);
+  background: rgba(232, 238, 255, 0.56);
 }
 
 .method-steps span {
@@ -346,8 +347,8 @@ button {
   overflow: hidden;
   padding: clamp(1.5rem, 4vw, 3rem);
   background:
-    radial-gradient(circle at 95% 5%, rgba(196, 90, 43, 0.22), transparent 18rem),
-    rgba(255, 255, 255, 0.68);
+    radial-gradient(circle at 95% 5%, rgba(255, 107, 74, 0.14), transparent 18rem),
+    rgba(232, 238, 255, 0.68);
 }
 
 .newsletter-panel.compact {
@@ -384,7 +385,7 @@ small {
   padding: 1rem;
   border: 1px solid var(--line);
   border-radius: calc(var(--radius) - 8px);
-  background: rgba(255, 250, 242, 0.74);
+  background: rgba(245, 242, 234, 0.78);
 }
 
 .newsletter-form label {
@@ -395,10 +396,10 @@ small {
 
 .newsletter-form input {
   width: 100%;
-  border: 1px solid rgba(16, 32, 51, 0.22);
+  border: 1px solid rgba(23, 32, 51, 0.22);
   border-radius: 16px;
   padding: 0.85rem 0.95rem;
-  background: white;
+  background: #f8f6f0;
   color: var(--ink);
   font: inherit;
 }
@@ -428,7 +429,7 @@ small {
 
 .prose p,
 .prose li {
-  color: #33465b;
+  color: var(--ink);
 }
 
 .site-footer {
