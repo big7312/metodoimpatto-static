@@ -64,6 +64,10 @@ a {
   text-underline-offset: 0.18em;
 }
 
+a:not(.brand):not(.button):not(.article-card):not(.skip-link) {
+  color: var(--blue);
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -139,7 +143,7 @@ button {
 
 .site-nav a:hover {
   background: rgba(232, 238, 255, 0.72);
-  color: var(--ink);
+  color: var(--blue);
 }
 
 main {
@@ -158,7 +162,7 @@ main {
 
 .eyebrow {
   margin: 0 0 0.85rem;
-  color: var(--blue);
+  color: var(--accent);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -250,13 +254,50 @@ button {
   cursor: pointer;
 }
 
+.button:hover,
+button:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
 .button.secondary {
   background: transparent;
   color: var(--blue);
 }
 
+.button.secondary:hover {
+  color: var(--ink);
+}
+
 .section {
   padding: clamp(3rem, 7vw, 6rem) 0;
+}
+
+.section--dark {
+  background: var(--ink);
+  box-shadow: 0 0 0 100vmax var(--ink);
+  clip-path: inset(0 -100vmax);
+  color: #f5f2ea;
+}
+
+.section--dark .eyebrow {
+  color: var(--accent);
+}
+
+.section--dark .text-stack p {
+  color: rgba(245, 242, 234, 0.78);
+}
+
+.section--blue {
+  background: var(--paper-strong);
+  box-shadow: 0 0 0 100vmax var(--paper-strong);
+  clip-path: inset(0 -100vmax);
+}
+
+.section--gold {
+  background: rgba(245, 196, 81, 0.18);
+  box-shadow: 0 0 0 100vmax rgba(245, 196, 81, 0.18);
+  clip-path: inset(0 -100vmax);
 }
 
 .split {
@@ -302,7 +343,7 @@ button {
   height: 2.15rem;
   margin-bottom: 1rem;
   border-radius: 50%;
-  background: var(--ink);
+  background: var(--blue);
   color: white;
   font-weight: 700;
 }
@@ -335,8 +376,12 @@ button {
 
 .article-card time,
 .tag {
-  color: var(--muted);
+  color: var(--blue);
   font-size: 0.85rem;
+}
+
+.article-card:hover h3 {
+  color: var(--blue);
 }
 
 .newsletter-panel {

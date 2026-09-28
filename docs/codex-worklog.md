@@ -325,3 +325,19 @@ Perche:
 - rendere il sito piu dinamico e moderno senza introdurre nuovi elementi grafici;
 - aumentare la riconoscibilita del blu indaco mantenendo il corallo non dominante;
 - dare profondita allo sfondo senza trasformarlo in un gradiente decorativo evidente.
+
+### 2026-09-28 - Applicazione estesa della palette alle sezioni
+
+Cosa e stato fatto:
+
+- mantenuto invariato il layout e aggiunte solo classi cromatiche alle sezioni gia presenti nella home;
+- applicato il blu notte a una sezione con testo chiaro;
+- alternata una superficie azzurra per il metodo e un richiamo giallo molto leggero per le applicazioni;
+- rese corallo le label e indaco i link, i tag e gli elementi interattivi;
+- aggiunto un cambio colore al passaggio del mouse sui pulsanti senza modificarne dimensioni o spaziature.
+
+Perche:
+
+- rendere la pagina piu dinamica attraverso il colore, senza ridisegnare i componenti;
+- mantenere il blu indaco come identificativo principale e il corallo come accento;
+- usare il giallo solo come evidenziazione occasionale e non come colore dominante.
