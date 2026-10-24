@@ -8,14 +8,26 @@ const steps = [
   ["T", "Trasferire", "Rendere il flusso ripetibile, documentato e comprensibile."],
   ["O", "Ottimizzare", "Migliorare con dati, feedback e revisione umana."]
 ];
+
+const path = Astro.props.path ?? false;
+const results = [
+  "Un obiettivo e un criterio di successo da confrontare con la situazione attuale.",
+  "Una mappa dei passaggi, dei dati disponibili e di chi verifica il lavoro.",
+  "Una prova circoscritta, con limiti e responsabilità definiti.",
+  "Un primo flusso di lavoro con controllo umano prima dell'uso del risultato.",
+  "Un confronto tra tempo impiegato, qualità ed errori, con e senza AI.",
+  "Una procedura condivisa: istruzioni, esempi e casi da gestire a mano.",
+  "Un momento di revisione per aggiornare il flusso o interromperlo se non aiuta."
+];
 ---
 
-<ol class="method-steps">
-  {steps.map(([letter, title, text]) => (
+<ol class:list={["method-steps", { "method-steps--path": path }]}>
+  {steps.map(([letter, title, text], index) => (
     <li>
       <span>{letter}</span>
-      <h3>{title}</h3>
+      <h3>{path ? `${index + 1}. ${title}` : title}</h3>
       <p>{text}</p>
+      {path && <p class="step-result"><strong>Cosa ottenere:</strong> {results[index]}</p>}
     </li>
   ))}
 </ol>

@@ -6,25 +6,106 @@ import { getCollection } from "astro:content";
 const articles = (await getCollection("articles"))
   .filter((article) => !article.data.draft)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const [featuredArticle, ...otherArticles] = articles;
+const formatDate = (date: Date) => date.toLocaleDateString("it-IT", {
+  day: "numeric", month: "long", year: "numeric", timeZone: "UTC"
+});
 ---
 
-<BaseLayout title="Articoli | Metodo IMPATTO">
-  <section class="prose">
-    <p class="eyebrow">Articoli</p>
-    <h1>Note pratiche sull'AI che entra nei processi.</h1>
-    <p class="lead">Pochi pezzi, con un problema chiaro e una domanda utile. Il blog parte da qui.</p>
-  </section>
-  <section class="grid">
-    {articles.map((article) => (
-      <a class="article-card" href={`/articoli/${article.slug}/`}>
-        <span class="tag">{article.data.category}</span>
-        <h3>{article.data.title}</h3>
+<BaseLayout
+  title="Articoli su AI e lavoro per piccole imprese | Metodo IMPATTO"
+  description="Leggi gli articoli di Metodo IMPATTO sull'intelligenza artificiale nel lavoro: prompt, CRM e processi per piccole imprese e professionisti, con criteri pratici."
+>
+  <div class="articles-page">
+  <header class="prose articles-intro">
+    <p class="eyebrow">Il quaderno di Metodo IMPATTO</p>
+    <h1>Articoli su AI e lavoro.</h1>
+    <p class="lead">Prompt, vendite e processi: spunti pratici per piccole imprese e professionisti che vogliono capire dove l'intelligenza artificiale può essere utile.</p>
+    <p>Ogni articolo parte da un problema di lavoro e propone un criterio per valutare la risposta dell'AI. Puoi iniziare dall'ultima pubblicazione oppure esplorare gli altri articoli.</p>
+    <nav class="articles-index" aria-label="Esplora gli articoli">
+      {featuredArticle && <a href="#ultimo-articolo">L'ultimo articolo</a>}
+      {otherArticles.length > 0 && <a href="#archivio">Gli altri articoli</a>}
+      <a href="/metodo/">Conosci il Metodo IMPATTO</a>
+    </nav>
+  </header>
+    {featuredArticle && (
+    <section id="ultimo-articolo" class="latest-article" aria-labelledby="latest-title" tabindex="-1">
+      <p class="eyebrow">Da leggere per primo</p>
+      <h2 id="latest-title" class="section-title">L'ultimo articolo.</h2>
+      <a class="article-card article-card--featured" href={`/articoli/${featuredArticle.slug}/`} aria-labelledby="featured-title">
+        <div class="article-meta">
+          <span class="tag">{featuredArticle.data.category}</span>
+          <time datetime={featuredArticle.data.pubDate.toISOString()}>{formatDate(featuredArticle.data.pubDate)}</time>
+        </div>
+        <h3 id="featured-title">{featuredArticle.data.title}</h3>
+        <p>{featuredArticle.data.description}</p>
+        <span class="read-link" aria-hidden="true">Leggi l'articolo <span aria-hidden="true">→</span></span>
+      </a>
+    </section>
+    )}
+    {otherArticles.length > 0 && (
+    <section id="archivio" class="articles-archive" aria-labelledby="archive-title" tabindex="-1">
+      <div class="archive-heading">
+        <h2 id="archive-title" class="section-title">Gli altri articoli.</h2>
+        <p>{otherArticles.length} {otherArticles.length === 1 ? "articolo" : "articoli"}, dal più recente</p>
+      </div>
+      <div class="article-grid">
+    {otherArticles.map((article) => (
+      <a class="article-card" href={`/articoli/${article.slug}/`} aria-labelledby={`title-${article.slug}`}>
+        <div class="article-meta">
+          <span class="tag">{article.data.category}</span>
+          <time datetime={article.data.pubDate.toISOString()}>{formatDate(article.data.pubDate)}</time>
+        </div>
+        <h3 id={`title-${article.slug}`}>{article.data.title}</h3>
         <p>{article.data.description}</p>
-        <time datetime={article.data.pubDate.toISOString()}>
-          {article.data.pubDate.toLocaleDateString("it-IT", { day: "2-digit", month: "long", year: "numeric" })}
-        </time>
+        <span class="read-link" aria-hidden="true">Leggi l'articolo <span aria-hidden="true">→</span></span>
       </a>
     ))}
-  </section>
-  <NewsletterBox compact />
+      </div>
+    </section>
+    )}
+    {articles.length === 0 && <p>Non ci sono ancora articoli pubblicati. Puoi iniziare dal <a href="/metodo/">Metodo IMPATTO</a>.</p>}
+    <aside class="panel articles-guide" aria-labelledby="guide-title">
+      <div>
+        <p class="eyebrow">Dalla lettura alla prova</p>
+        <h2 id="guide-title">Scegli dove applicare l'AI.</h2>
+        <p>Esplora gli esempi per marketing, vendite e organizzazione, poi scegli un'attività piccola da verificare con il metodo.</p>
+      </div>
+      <a class="button" href="/applicazioni/">Esplora le applicazioni AI</a>
+    </aside>
+  </div>
+  <NewsletterBox compact preview />
 </BaseLayout>
+
+<style>
+  .articles-page h1 { max-width: 16ch; font-size: clamp(2.8rem, 6vw, 5.5rem); }
+  .articles-page h1,
+  .articles-page h2,
+  .articles-page h3 { line-height: 1.15; text-wrap: balance; overflow-wrap: anywhere; }
+  .articles-page h2 { font-size: clamp(1.9rem, 4vw, 3.2rem); }
+  .articles-index { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-top: 1.5rem; }
+  .articles-index a { display: inline-flex; align-items: center; min-height: 44px; }
+  .latest-article,
+  .articles-archive { scroll-margin-top: 1.5rem; }
+  .section-title { margin-bottom: 1.5rem; }
+  .articles-archive { padding-top: clamp(3rem, 6vw, 5rem); }
+  .archive-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.5rem 2rem; }
+  .archive-heading p { color: var(--muted); margin-top: 0; }
+  .article-card { display: flex; flex-direction: column; min-width: 0; padding: clamp(1.25rem, 3vw, 2rem); }
+  .article-card h3 { font-size: clamp(1.4rem, 2vw, 1.9rem); }
+  .article-card p { margin: 0 0 1rem; }
+  .article-card--featured h3 { max-width: 30ch; font-size: clamp(1.9rem, 4vw, 3.3rem); }
+  .article-card--featured p { max-width: 65ch; }
+  .article-meta { display: flex; flex-wrap: wrap; gap: 0.35rem 1rem; align-items: baseline; }
+  .read-link { margin-top: auto; color: var(--blue); text-decoration: underline; text-underline-offset: 0.2em; font-weight: 700; }
+  .article-card:focus-visible h3 { color: var(--blue); }
+  .articles-guide { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem 3rem; justify-content: space-between; margin-top: clamp(3rem, 6vw, 5rem); }
+  .articles-guide > div { flex: 1 1 28rem; }
+  .articles-guide h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); }
+  .articles-guide p:last-child { margin-bottom: 0; }
+
+  @media (min-width: 681px) {
+    .article-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+</style>

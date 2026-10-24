@@ -1,15 +1,90 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import NewsletterBox from "../components/NewsletterBox.astro";
 ---
 
-<BaseLayout title="Il Prompt della Settimana | Metodo IMPATTO">
-  <section class="prose">
-    <p class="eyebrow">Newsletter</p>
-    <h1>Una mail breve da tenere aperta mentre lavori.</h1>
-    <p class="lead">
-      Ogni venerdi ricevi un esempio pratico per usare l'AI in modo piu lucido: cosa chiedere, cosa evitare, come valutare il risultato.
-    </p>
-  </section>
-  <NewsletterBox />
+<BaseLayout
+  title="Newsletter AI: Il Prompt della Settimana | Metodo IMPATTO"
+  description="Scopri Il Prompt della Settimana, la newsletter AI per piccole imprese e professionisti: un caso, un prompt e un criterio di verifica. Iscrizioni in arrivo."
+>
+  <div class="newsletter-page">
+    <section class="newsletter-hero" aria-labelledby="newsletter-page-title">
+      <div>
+        <p class="eyebrow">La newsletter di Metodo IMPATTO</p>
+        <h1 id="newsletter-page-title">Il Prompt della Settimana.</h1>
+        <p class="lead">Una mail breve sull'AI nel lavoro: un caso pratico, un prompt commentato e un criterio per capire se il risultato ti aiuta.</p>
+        <p>Per piccole imprese e professionisti che vogliono partire da un problema concreto e mettere alla prova l'intelligenza artificiale.</p>
+        <p class="newsletter-frequency">La cadenza prevista è settimanale, il venerdì.</p>
+      </div>
+      <aside class="panel newsletter-status" aria-labelledby="signup-title">
+        <p class="eyebrow">In preparazione</p>
+        <h2 id="signup-title">Le iscrizioni apriranno prossimamente.</h2>
+        <p>Il modulo di iscrizione non è ancora disponibile. Nel frattempo puoi esplorare gli articoli e iniziare a usare il metodo.</p>
+        <a class="button" href="/articoli/">Leggi gli articoli sull'AI</a>
+        <a class="status-link" href="#contenuti">Scopri cosa troverai nella newsletter</a>
+      </aside>
+    </section>
+
+    <section id="contenuti" class="newsletter-contents" aria-labelledby="contents-title" tabindex="-1">
+      <p class="eyebrow">Una traccia da usare nel lavoro</p>
+      <h2 id="contents-title">Cosa troverai in ogni uscita.</h2>
+      <div class="grid">
+        <article class="panel">
+          <p class="newsletter-number" aria-hidden="true">01</p>
+          <h3>Un caso pratico</h3>
+          <p>Un problema di lavoro da osservare: il contesto, l'obiettivo e i vincoli che contano prima di scegliere uno strumento.</p>
+        </article>
+        <article class="panel">
+          <p class="newsletter-number" aria-hidden="true">02</p>
+          <h3>Un prompt commentato</h3>
+          <p>Una richiesta da leggere, capire e adattare alla tua attività, con una spiegazione delle informazioni necessarie.</p>
+        </article>
+        <article class="panel">
+          <p class="newsletter-number" aria-hidden="true">03</p>
+          <h3>Un criterio di verifica</h3>
+          <p>Una domanda per valutare l'output e il lavoro di revisione: cosa è migliorato e cosa resta da correggere.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="prose newsletter-start" aria-labelledby="start-title">
+      <p class="eyebrow">Puoi iniziare da qui</p>
+      <h2 id="start-title">Prima del prompt, chiarisci il risultato.</h2>
+      <p>Un prompt utile parte da un brief: a chi serve la risposta, quale azione deve aiutare e come ne valuterai la qualità. Puoi approfondire questo approccio nell'articolo già disponibile.</p>
+      <div class="cta-row">
+        <a class="button" href="/articoli/il-prompt-non-e-magia/">Leggi: il prompt è un brief</a>
+        <a class="button secondary" href="/metodo/">Scopri il Metodo IMPATTO</a>
+      </div>
+    </section>
+  </div>
 </BaseLayout>
+
+<style>
+  .newsletter-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: clamp(1.5rem, 5vw, 4rem);
+    align-items: center;
+    padding-block: clamp(3rem, 7vw, 6rem);
+  }
+
+  .newsletter-page h1 { max-width: 15ch; font-size: clamp(2.8rem, 6vw, 5.5rem); }
+  .newsletter-page h1,
+  .newsletter-page h2,
+  .newsletter-page h3 { line-height: 1.15; text-wrap: balance; overflow-wrap: anywhere; }
+  .newsletter-page h2 { font-size: clamp(1.9rem, 4vw, 3.2rem); }
+  .newsletter-page h3 { font-size: clamp(1.5rem, 2.5vw, 2rem); }
+  .newsletter-frequency { color: var(--muted); }
+  .newsletter-status h2 { font-size: clamp(1.7rem, 3vw, 2.3rem); }
+  .newsletter-status .button { width: 100%; }
+  .status-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 1rem; }
+  .newsletter-contents { scroll-margin-top: 1.5rem; }
+  .newsletter-contents h2 { margin-bottom: 2rem; }
+  .newsletter-number { color: var(--blue); font-weight: 700; margin: 0 0 1rem; }
+  .newsletter-contents .panel > p:last-child { margin-bottom: 0; }
+  .newsletter-start h2 { margin-top: 0; }
+
+  @media (max-width: 980px) {
+    .newsletter-hero { grid-template-columns: 1fr; }
+    .newsletter-contents .grid { grid-template-columns: 1fr; }
+  }
+</style>

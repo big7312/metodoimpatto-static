@@ -10,17 +10,20 @@ const articles = (await getCollection("articles"))
   .slice(0, 3);
 ---
 
-<BaseLayout>
-  <section class="hero">
+<BaseLayout
+  title="AI per piccole imprese e professionisti | Metodo IMPATTO"
+  description="Scopri dove usare l'intelligenza artificiale nella tua attività: un metodo in sette passaggi, esempi pratici e articoli per misurare i risultati dell'AI."
+>
+  <section class="hero home-hero" aria-labelledby="home-title">
     <div>
       <p class="eyebrow">Metodo IMPATTO</p>
-      <h1>AI utile, prima degli strumenti.</h1>
+      <h1 id="home-title">AI utile, prima degli strumenti.</h1>
       <p class="lead">
-        Un modo pratico per capire dove l'intelligenza artificiale puo aiutare davvero piccole imprese e professionisti.
+        Intelligenza artificiale per piccole imprese e professionisti: un metodo pratico per scegliere da dove iniziare e misurare cosa migliora nel lavoro.
       </p>
       <div class="cta-row">
-        <a class="button" href="/newsletter/">Ricevi il Prompt della Settimana</a>
-        <a class="button secondary" href="/metodo/">Leggi il metodo</a>
+        <a class="button" href="/metodo/">Scopri i sette passaggi</a>
+        <a class="button secondary" href="/applicazioni/">Esplora le applicazioni AI</a>
       </div>
     </div>
     <aside class="hero-card">
@@ -51,18 +54,21 @@ const articles = (await getCollection("articles"))
     </div>
   </section>
 
-  <section class="section section--blue">
+  <section class="section section--blue home-section">
     <p class="eyebrow">Il metodo</p>
     <h2>Sette passaggi, una sola domanda: sta migliorando davvero il lavoro?</h2>
     <MethodSteps />
+    <p class="section-link"><a href="/metodo/">Approfondisci il Metodo IMPATTO</a></p>
   </section>
 
-  <section class="section section--gold">
-    <div class="split">
+  <section class="section section--gold home-section">
+    <div class="home-section-heading">
       <div>
         <p class="eyebrow">Applicazioni</p>
         <h2>Dove ha senso iniziare.</h2>
       </div>
+      <a href="/applicazioni/">Scopri le applicazioni AI</a>
+    </div>
       <div class="grid">
         <article class="panel">
           <h3>Marketing</h3>
@@ -77,28 +83,75 @@ const articles = (await getCollection("articles"))
           <p>Procedure interne, checklist, documentazione e passaggi ripetitivi da rendere leggibili.</p>
         </article>
       </div>
-    </div>
   </section>
 
   <section class="section">
-    <NewsletterBox />
+    <NewsletterBox preview />
   </section>
 
-  <section class="section">
-    <div class="split">
+  <section class="section home-section">
+    <div class="home-section-heading">
       <div>
         <p class="eyebrow">Articoli</p>
-        <h2>Prime note di lavoro.</h2>
+        <h2>AI e lavoro: gli ultimi articoli.</h2>
       </div>
+      <a href="/articoli/">Leggi tutti gli articoli</a>
+    </div>
       <div class="grid">
         {articles.map((article) => (
           <a class="article-card" href={`/articoli/${article.slug}/`}>
             <span class="tag">{article.data.category}</span>
+            <time datetime={article.data.pubDate.toISOString()}>
+              {article.data.pubDate.toLocaleDateString("it-IT", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })}
+            </time>
             <h3>{article.data.title}</h3>
             <p>{article.data.description}</p>
           </a>
         ))}
       </div>
-    </div>
   </section>
 </BaseLayout>
+
+<style>
+  .home-hero h1 {
+    font-size: clamp(3.1rem, 7vw, 6.5rem);
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+
+  .home-section-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .home-section-heading > div {
+    max-width: 48rem;
+  }
+
+  .home-section-heading > a {
+    padding-block: 0.7rem;
+  }
+
+  .home-section :global(h2),
+  .home-section :global(h3) {
+    line-height: 1.15;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+  }
+
+  .home-section :global(.method-steps) {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  }
+
+  .home-section :global(.method-steps li) {
+    min-height: auto;
+  }
+
+  .section-link {
+    margin-top: 1.5rem;
+  }
+</style>

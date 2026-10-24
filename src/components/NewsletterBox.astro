@@ -1,5 +1,6 @@
 ---
 const compact = Astro.props.compact ?? false;
+const preview = Astro.props.preview ?? false;
 ---
 
 <section class:list={["newsletter-panel", { compact }]} aria-labelledby="newsletter-title">
@@ -15,7 +16,13 @@ const compact = Astro.props.compact ?? false;
       <li><strong>1 criterio</strong><span>per scegliere meglio il prossimo test.</span></li>
     </ul>
   </div>
-  <form class="newsletter-form" action="#" method="post">
+  {preview ? (
+    <div class="newsletter-form">
+      <p><strong>Le iscrizioni apriranno prossimamente.</strong></p>
+      <p>Nel frattempo puoi leggere gli articoli e iniziare a mettere alla prova il metodo.</p>
+      <a class="button" href="/articoli/">Leggi gli articoli sull'AI</a>
+    </div>
+  ) : <form class="newsletter-form" action="#" method="post">
     <label>
       Nome
       <input type="text" name="name" placeholder="Il tuo nome" disabled />
@@ -28,5 +35,5 @@ const compact = Astro.props.compact ?? false;
     </label>
     <button type="submit" disabled>Ricevi il prossimo prompt</button>
     <p class="form-note">Placeholder pronto per Brevo: double opt-in e consenso privacy separato.</p>
-  </form>
+  </form>}
 </section>

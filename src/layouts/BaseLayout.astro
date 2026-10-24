@@ -32,7 +32,9 @@ const canonical = new URL(Astro.url.pathname, SITE.url);
         <span>Metodo IMPATTO</span>
       </a>
       <nav class="site-nav" aria-label="Navigazione principale">
-        {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+        {navItems.map((item) => (
+          <a href={item.href} aria-current={Astro.url.pathname === item.href || (item.href !== "/" && Astro.url.pathname.startsWith(item.href)) ? "page" : undefined}>{item.label}</a>
+        ))}
       </nav>
     </header>
     <main id="content">

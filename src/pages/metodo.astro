@@ -4,20 +4,124 @@ import MethodSteps from "../components/MethodSteps.astro";
 import NewsletterBox from "../components/NewsletterBox.astro";
 ---
 
-<BaseLayout title="Il Metodo IMPATTO | Metodo IMPATTO">
-  <article class="prose">
-    <p class="eyebrow">Pillar page</p>
+<BaseLayout
+  title="Metodo IMPATTO: 7 passaggi per usare l'AI nel lavoro"
+  description="Come applicare l'AI in una piccola impresa: scopri i sette passaggi del Metodo IMPATTO, dal risultato da migliorare al test e alla revisione del processo."
+>
+  <article class="method-page">
+  <header class="prose method-intro">
+    <p class="eyebrow">AI per imprese e professionisti</p>
     <h1>Il Metodo IMPATTO</h1>
     <p class="lead">
-      Quando si parte dagli strumenti, spesso si collezionano prove scollegate. Il Metodo IMPATTO fa il contrario: chiarisce il risultato, osserva il processo, progetta una soluzione e misura cosa succede.
+      Sette passaggi per applicare l'intelligenza artificiale al lavoro: chiarire il risultato, capire il processo e verificare se una soluzione aiuta davvero la tua attività.
     </p>
-    <h2>Perche il risultato viene prima della tecnologia</h2>
+    <nav class="method-index" aria-label="In questa pagina">
+      <a href="#passaggi">I sette passaggi</a>
+      <a href="#esempio">Un esempio pratico</a>
+      <a href="#iniziare">Da dove iniziare</a>
+    </nav>
+    <h2>Perché il risultato viene prima della tecnologia</h2>
     <p>
-      Se un'azienda dice "voglio usare l'AI", non ha ancora definito il problema. Se invece dice "voglio rispondere piu in fretta alle richieste" o "ridurre il tempo speso in attivita ripetitive", abbiamo una base su cui lavorare.
+      Se un'azienda dice «voglio usare l'AI», non ha ancora definito il problema. Se invece dice «voglio rispondere più in fretta alle richieste» o «ridurre il tempo speso in attività ripetitive», abbiamo una base su cui lavorare.
     </p>
-  </article>
-  <section class="section">
-    <MethodSteps />
+    <p>Il metodo serve a piccole imprese e professionisti che vogliono valutare un uso concreto dell'AI in marketing, vendite o organizzazione. Si parte da un processo circoscritto, con dati utilizzabili e una persona responsabile della verifica.</p>
+  </header>
+  <section id="passaggi" class="section method-path-section" aria-labelledby="passaggi-title" tabindex="-1">
+    <p class="eyebrow">La sequenza IMPATTO</p>
+    <h2 id="passaggi-title">I sette passaggi per usare l'AI nel lavoro.</h2>
+    <p class="method-summary">Ogni lettera corrisponde a un'azione. Per ogni passaggio, porta con te un risultato concreto prima di proseguire.</p>
+    <MethodSteps path />
   </section>
-  <NewsletterBox compact />
+  <section id="esempio" class="panel method-example" aria-labelledby="esempio-title" tabindex="-1">
+    <p class="eyebrow">Un esempio da adattare</p>
+    <h2 id="esempio-title">Rispondere alle richieste dei clienti.</h2>
+    <p>Immagina una piccola impresa che riceve spesso le stesse domande via email. Ecco come impostare una prova, senza automatizzare subito l'invio.</p>
+    <dl>
+      <div><dt>Il risultato da cercare</dt><dd>Ridurre il tempo di preparazione delle risposte, mantenendo precisione e chiarezza.</dd></div>
+      <div><dt>La prova con l'AI</dt><dd>Preparare bozze usando una raccolta aggiornata di domande e risposte, senza inserire dati personali non necessari. Una persona controlla ogni bozza prima dell'invio.</dd></div>
+      <div><dt>Cosa misurare</dt><dd>Tempo complessivo, correzioni necessarie ed errori, confrontando richieste simili gestite con e senza AI.</dd></div>
+      <div><dt>Come decidere</dt><dd>Se la revisione annulla il tempo risparmiato o la qualità peggiora, rivedi la prova. Documenta il flusso solo quando il beneficio è verificabile.</dd></div>
+    </dl>
+  </section>
+  <section id="iniziare" class="prose method-next" aria-labelledby="iniziare-title" tabindex="-1">
+    <p class="eyebrow">Il primo test</p>
+    <h2 id="iniziare-title">Scegli un processo, scrivi un risultato.</h2>
+    <p>Individua un'attività frequente e descrivi come funziona oggi. Annota il tempo richiesto, i problemi ricorrenti e il criterio con cui giudicherai la prova. Poi scegli un uso dell'AI abbastanza piccolo da poter essere verificato.</p>
+    <div class="cta-row">
+      <a class="button" href="/applicazioni/">Esplora le applicazioni AI</a>
+      <a class="button secondary" href="/articoli/prima-il-contesto/">Leggi: prima il contesto</a>
+    </div>
+  </section>
+  </article>
+  <NewsletterBox compact preview />
 </BaseLayout>
+
+<style>
+  .method-page h1 {
+    max-width: 15ch;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+  }
+
+  .method-page :global(h1),
+  .method-page :global(h2),
+  .method-page :global(h3) {
+    line-height: 1.15;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+  }
+
+  .method-page h2 { font-size: clamp(1.9rem, 4vw, 3.2rem); }
+  .method-page section[id] { scroll-margin-top: 1.5rem; }
+  .method-index { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-top: 1.5rem; }
+  .method-index a { display: inline-flex; align-items: center; min-height: 44px; }
+  .method-summary { max-width: 44rem; color: var(--muted); }
+  .method-example { max-width: 900px; margin-inline: auto; }
+  .method-example dl { margin-bottom: 0; }
+  .method-example dl > div { border-top: 1px solid var(--line); padding-block: 1rem; }
+  .method-example dt { font-weight: 700; color: var(--blue); }
+  .method-example dd { margin: 0.35rem 0 0; }
+  .method-next h2 { margin-top: 0; }
+
+  .method-page :global(.method-steps--path) {
+    grid-template-columns: 1fr;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    gap: 1rem;
+    max-width: 900px;
+    margin-inline: auto;
+  }
+
+  .method-page :global(.method-steps--path::before) {
+    top: 2rem;
+    bottom: 2rem;
+    left: 2.6rem;
+    right: auto;
+    width: 2px;
+    height: auto;
+  }
+
+  .method-page :global(.method-steps--path li) {
+    position: relative;
+    min-height: auto;
+    padding: 1.5rem 1.5rem 1.5rem 6rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--paper-strong);
+  }
+
+  .method-page :global(.method-steps--path span) {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    margin: 0;
+  }
+
+  .method-page :global(.method-steps--path h3) { font-size: 1.35rem; }
+  .method-page :global(.method-steps--path .step-result) { margin-top: 0.75rem; color: var(--ink); }
+
+  @media (max-width: 480px) {
+    .method-page :global(.method-steps--path li) { padding: 1.25rem; }
+    .method-page :global(.method-steps--path span) { position: static; margin-bottom: 1rem; }
+  }
+</style>

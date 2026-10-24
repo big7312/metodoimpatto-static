@@ -7,6 +7,7 @@
   --line: rgba(23, 32, 51, 0.16);
   --accent: #ff6b4a;
   --accent-dark: #d94e34;
+  --accent-text: #a83420;
   --blue: #3454d1;
   --radius: 28px;
   --shadow: 0 24px 80px rgba(23, 32, 51, 0.12);
@@ -146,6 +147,19 @@ button {
   color: var(--blue);
 }
 
+.site-nav a[aria-current="page"] {
+  background: var(--paper-strong);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 4px;
+}
+
 main {
   width: min(1180px, calc(100% - 2rem));
   margin: 0 auto;
@@ -162,7 +176,9 @@ main {
 
 .eyebrow {
   margin: 0 0 0.85rem;
-  color: var(--accent);
+  padding-left: 0.7rem;
+  border-left: 3px solid var(--accent);
+  color: var(--accent-text);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -206,6 +222,10 @@ h3 {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+}
+
+.hero-card {
+  background: rgba(232, 238, 255, 0.78);
 }
 
 .hero-card {
@@ -256,8 +276,8 @@ button {
 
 .button:hover,
 button:hover:not(:disabled) {
-  border-color: var(--accent);
-  background: var(--accent);
+  border-color: var(--accent-text);
+  background: var(--accent-text);
 }
 
 .button.secondary {
@@ -330,6 +350,23 @@ button:hover:not(:disabled) {
   list-style: none;
 }
 
+.method-steps--path {
+  position: relative;
+  isolation: isolate;
+}
+
+.method-steps--path::before {
+  position: absolute;
+  top: 2.15rem;
+  right: 8%;
+  left: 8%;
+  z-index: -1;
+  height: 2px;
+  background: var(--accent);
+  content: "";
+  opacity: 0.7;
+}
+
 .method-steps li {
   min-height: 15rem;
   padding: 1.1rem;
@@ -343,8 +380,8 @@ button:hover:not(:disabled) {
   height: 2.15rem;
   margin-bottom: 1rem;
   border-radius: 50%;
-  background: var(--blue);
-  color: white;
+  background: var(--accent);
+  color: var(--ink);
   font-weight: 700;
 }
 
@@ -367,11 +404,50 @@ button:hover:not(:disabled) {
   gap: 1rem;
 }
 
+.grid > :nth-child(2) {
+  background: rgba(245, 196, 81, 0.18);
+}
+
+.grid > :nth-child(3) {
+  background: rgba(255, 107, 74, 0.08);
+}
+
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
 .article-card {
   display: grid;
   gap: 0.75rem;
   padding: 1.25rem;
   text-decoration: none;
+}
+
+.article-card--featured {
+  grid-column: 1 / -1;
+  background: var(--paper-strong);
+  border-color: var(--blue);
+  box-shadow: 0 24px 80px rgba(52, 84, 209, 0.14);
+}
+
+.article-card--featured h2 {
+  max-width: 18ch;
+  color: var(--ink);
+  font-size: clamp(2.2rem, 5vw, 4.8rem);
+}
+
+.article-grid > .article-card:nth-child(3n + 2) {
+  background: rgba(245, 242, 234, 0.82);
+}
+
+.article-grid > .article-card:nth-child(3n + 3) {
+  background: rgba(232, 238, 255, 0.82);
+}
+
+.article-grid > .article-card:nth-child(3n + 4) {
+  background: rgba(255, 107, 74, 0.08);
 }
 
 .article-card time,
@@ -382,6 +458,18 @@ button:hover:not(:disabled) {
 
 .article-card:hover h3 {
   color: var(--blue);
+}
+
+.article-card--featured:hover h2 {
+  color: var(--blue);
+}
+
+.method-intro + .method-path-section {
+  padding-top: 0;
+}
+
+.method-path-section {
+  padding-bottom: 3rem;
 }
 
 .newsletter-panel {
@@ -501,8 +589,15 @@ small {
   }
 
   .method-steps,
-  .grid {
+  .grid,
+  .article-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .method-steps--path::before {
+    top: 2.15rem;
+    right: 5%;
+    left: 5%;
   }
 }
 
@@ -527,7 +622,23 @@ small {
 
   .method-steps,
   .grid,
+  .article-grid,
   .signal-list {
     grid-template-columns: 1fr;
+  }
+
+  .method-steps--path::before {
+    top: 2.15rem;
+    right: auto;
+    bottom: 2.15rem;
+    left: 1.05rem;
+    width: 2px;
+    height: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }

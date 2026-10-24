@@ -1,18 +1,132 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import NewsletterBox from "../components/NewsletterBox.astro";
+
+const applications = [
+  {
+    id: "marketing",
+    title: "Marketing e contenuti",
+    intro: "Dai un contesto più chiaro a chi prepara e rivede i tuoi contenuti.",
+    task: "Preparare la prima bozza di un contenuto a partire da un brief.",
+    input: "Pubblico, obiettivo, informazioni verificate e tono di voce, con un esempio di riferimento.",
+    check: "Controlla fatti, coerenza con il brief e tempo necessario per la revisione.",
+    link: "/articoli/il-prompt-non-e-magia/",
+    label: "Come scrivere un brief per l'AI"
+  },
+  {
+    id: "vendite",
+    title: "Vendite e clienti",
+    intro: "Aiuta chi vende a ritrovare le informazioni prima di scegliere la prossima azione.",
+    task: "Riassumere lo storico di un contatto e preparare una bozza di follow-up.",
+    input: "Note CRM aggiornate, richieste del cliente e prossimi passi concordati, limitando i dati al necessario.",
+    check: "Verifica che il riepilogo rispetti le fonti e che la bozza non inventi impegni o condizioni.",
+    link: "/articoli/ai-priorita-clienti-crm/",
+    label: "AI e CRM: partire da dati affidabili"
+  },
+  {
+    id: "organizzazione",
+    title: "Organizzazione e processi",
+    intro: "Rendi più facile consultare e condividere le istruzioni di lavoro.",
+    task: "Trasformare appunti operativi in una prima checklist da verificare.",
+    input: "Passaggi reali, responsabilità, eccezioni note e documentazione aggiornata.",
+    check: "Fai provare la checklist a chi svolge l'attività e correggi omissioni e passaggi ambigui.",
+    link: "/articoli/prima-il-contesto/",
+    label: "Quale contesto dare all'AI"
+  }
+];
 ---
 
-<BaseLayout title="Applicazioni AI | Metodo IMPATTO">
-  <section class="prose">
-    <p class="eyebrow">Applicazioni</p>
-    <h1>Dove l'AI puo aiutare davvero.</h1>
-    <p class="lead">Non tutto merita automazione. Si parte dai punti in cui un processo e frequente, misurabile e abbastanza chiaro da essere migliorato.</p>
-  </section>
-  <section class="grid">
-    <article class="panel"><h3>Marketing</h3><p>Ricerca, brief, revisione di contenuti e analisi di domande ricorrenti.</p></article>
-    <article class="panel"><h3>Vendite</h3><p>Qualifica dei lead, follow-up, risposte standard e materiali commerciali piu coerenti.</p></article>
-    <article class="panel"><h3>Organizzazione</h3><p>Procedure interne, checklist, report sintetici e passaggi ripetitivi.</p></article>
-  </section>
-  <NewsletterBox compact />
+<BaseLayout
+  title="Applicazioni AI per piccole imprese | Metodo IMPATTO"
+  description="Esplora tre applicazioni pratiche dell'AI per piccole imprese e professionisti: marketing, vendite e processi. Scopri da dove partire e cosa verificare."
+>
+  <div class="applications-page">
+    <header class="prose applications-intro">
+      <p class="eyebrow">AI nel lavoro quotidiano</p>
+      <h1>Applicazioni AI per piccole imprese.</h1>
+      <p class="lead">Marketing, vendite e organizzazione: tre punti da cui iniziare a usare l'intelligenza artificiale con un obiettivo preciso e risultati da verificare.</p>
+      <p>Scegli un'attività frequente, con informazioni disponibili e un risultato che puoi controllare. Questi esempi sono prove da adattare al tuo lavoro, con revisione umana prima di usare o condividere l'output.</p>
+      <nav class="application-index" aria-label="Scegli un ambito">
+        {applications.map(({ id, title }) => <a href={`#${id}`}>{title}</a>)}
+      </nav>
+    </header>
+
+    <section aria-labelledby="examples-title">
+      <div class="applications-heading">
+        <p class="eyebrow">Dalla domanda alla prova</p>
+        <h2 id="examples-title">Tre applicazioni pratiche dell'AI.</h2>
+      </div>
+      <div class="grid application-grid">
+        {applications.map((application) => (
+          <article id={application.id} class="panel application-card" tabindex="-1" aria-labelledby={`${application.id}-title`}>
+            <h3 id={`${application.id}-title`}>{application.title}</h3>
+            <p>{application.intro}</p>
+            <dl>
+              <div><dt>Una prima prova</dt><dd>{application.task}</dd></div>
+              <div><dt>Cosa serve</dt><dd>{application.input}</dd></div>
+              <div><dt>Cosa verificare</dt><dd>{application.check}</dd></div>
+            </dl>
+            <a class="application-link" href={application.link}>{application.label}</a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="prose application-choice" aria-labelledby="choice-title">
+      <p class="eyebrow">Scegliere il primo test</p>
+      <h2 id="choice-title">Parti da un'attività piccola e verificabile.</h2>
+      <ol class="choice-list">
+        <li><strong>Osserva il lavoro attuale.</strong> Annota il tempo richiesto e i problemi ricorrenti prima di introdurre l'AI.</li>
+        <li><strong>Prepara il confronto.</strong> Scegli richieste simili e valuta tempo complessivo, correzioni ed errori con e senza AI.</li>
+        <li><strong>Decidi se proseguire.</strong> Se il controllo richiede più lavoro del beneficio ottenuto, rivedi la prova prima di estenderla.</li>
+      </ol>
+      <div class="application-note">
+        <h3>Quando conviene fermarsi?</h3>
+        <p>Se mancano dati affidabili, il processo è poco chiaro o il risultato è difficile da verificare, chiarisci prima questi punti. <a href="/articoli/dove-non-usare-ai/">Leggi dove non usare l'AI</a>.</p>
+      </div>
+      <div class="cta-row">
+        <a class="button" href="/metodo/">Segui i sette passaggi del metodo</a>
+        <a class="button secondary" href="/articoli/">Leggi tutti gli articoli</a>
+      </div>
+    </section>
+  </div>
+  <NewsletterBox compact preview />
 </BaseLayout>
+
+<style>
+  .applications-page h1 {
+    max-width: 18ch;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+  }
+
+  .applications-page h1,
+  .applications-page h2,
+  .applications-page h3 {
+    line-height: 1.15;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+  }
+
+  .applications-page h2 { font-size: clamp(1.9rem, 4vw, 3.2rem); }
+  .application-index { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-top: 1.5rem; }
+  .application-index a { display: inline-flex; align-items: center; min-height: 44px; }
+  .applications-heading { margin-bottom: 2rem; }
+  .application-grid { align-items: stretch; }
+  .application-card { display: flex; flex-direction: column; min-width: 0; scroll-margin-top: 1.5rem; }
+  .application-card h3 { font-size: clamp(1.5rem, 2.5vw, 2rem); }
+  .application-card dl { margin: 0 0 1rem; }
+  .application-card dl > div { padding-block: 1rem; border-top: 1px solid var(--line); }
+  .application-card dt { font-weight: 700; }
+  .application-card dd { margin: 0.4rem 0 0; color: var(--muted); }
+  .application-link { margin-top: auto; padding-block: 0.7rem; }
+  .application-choice h2 { margin-top: 0; }
+  .choice-list { padding-left: 1.4rem; }
+  .choice-list li + li { margin-top: 1rem; }
+  .application-note { margin-top: 2rem; padding: 1.25rem; border-left: 3px solid var(--accent); background: var(--paper-strong); }
+  .application-note h3 { font-size: 1.5rem; }
+  .application-note p { margin-bottom: 0; }
+
+  @media (min-width: 681px) and (max-width: 1100px) {
+    .application-grid { grid-template-columns: 1fr; max-width: 760px; margin-inline: auto; }
+  }
+</style>

@@ -3,16 +3,89 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import NewsletterBox from "../components/NewsletterBox.astro";
 ---
 
-<BaseLayout title="Chi sono | Metodo IMPATTO">
-  <article class="prose">
-    <p class="eyebrow">Chi sono</p>
-    <h1>Una voce pratica sull'AI nel lavoro reale.</h1>
-    <p class="lead">
-      Metodo IMPATTO nasce per raccontare l'AI senza rumore: meno liste di strumenti, piu domande utili sui processi.
-    </p>
-    <p>
-      Il progetto osserva cosa succede quando una piccola impresa prova a usare l'intelligenza artificiale non come scorciatoia, ma come parte di un metodo verificabile.
-    </p>
+<BaseLayout
+  title="Chi sono e come ragiono sull'AI | Metodo IMPATTO"
+  description="Dietro Metodo IMPATTO: un approccio pratico all'AI per piccole imprese e professionisti, basato su obiettivi chiari, processi e risultati da verificare."
+>
+  <article class="about-page">
+    <header class="prose about-intro">
+      <p class="eyebrow">Chi sono · Metodo IMPATTO</p>
+      <h1>Parto dal lavoro che c'è da fare.</h1>
+      <p class="lead">Mi interessa capire dove l'intelligenza artificiale può aiutare piccole imprese e professionisti. Per questo parto dagli obiettivi, osservo i processi e cerco risultati che si possano verificare.</p>
+      <p>In Metodo IMPATTO raccolgo questo modo di ragionare: domande concrete, esempi da adattare e criteri per decidere se una prova merita di diventare un'abitudine.</p>
+      <nav class="about-index" aria-label="In questa pagina">
+        <a href="#approccio">Come affronto l'AI</a>
+        <a href="#scritti">Da dove iniziare a leggere</a>
+      </nav>
+    </header>
+
+    <section id="approccio" aria-labelledby="approach-title" tabindex="-1">
+      <p class="eyebrow">Il mio punto di partenza</p>
+      <h2 id="approach-title">Un obiettivo chiaro, prima degli strumenti.</h2>
+      <p class="about-summary">Un testo convincente o una risposta veloce sono un inizio. Per capire se l'AI aiuta, guardo anche il tempo di revisione, la qualità e il controllo sul risultato.</p>
+      <div class="grid about-principles">
+        <section class="panel" aria-labelledby="context-title">
+          <h3 id="context-title">Capire il contesto</h3>
+          <p>Prima di scegliere un'app o scrivere un prompt, chiarisco quale attività deve migliorare, chi la svolge e quali informazioni servono.</p>
+        </section>
+        <section class="panel" aria-labelledby="test-title">
+          <h3 id="test-title">Fare una prova piccola</h3>
+          <p>Preferisco un uso circoscritto, confrontabile con il lavoro attuale. Il beneficio deve reggere anche dopo le correzioni necessarie.</p>
+        </section>
+        <section class="panel" aria-labelledby="judgment-title">
+          <h3 id="judgment-title">Mantenere il giudizio umano</h3>
+          <p>Le risposte e i punteggi dell'AI vanno verificati. Chi conosce il lavoro deve poter riconoscere gli errori e decidere quando fermarsi.</p>
+        </section>
+      </div>
+      <p class="about-method-link"><a href="/metodo/">Scopri come traduco questo approccio nei sette passaggi di IMPATTO</a></p>
+    </section>
+
+    <section id="scritti" class="prose about-reading" aria-labelledby="reading-title" tabindex="-1">
+      <p class="eyebrow">Per conoscere il mio approccio</p>
+      <h2 id="reading-title">Tre letture da cui partire.</h2>
+      <ul class="reading-list">
+        <li>
+          <a href="/articoli/prima-il-contesto/">Prima il contesto, poi la richiesta</a>
+          <p>Le informazioni che rendono una richiesta all'AI più utile e meno ambigua.</p>
+        </li>
+        <li>
+          <a href="/articoli/ai-priorita-clienti-crm/">AI e priorità dei clienti nel CRM</a>
+          <p>Perché l'affidabilità dei dati conta prima di un punteggio commerciale.</p>
+        </li>
+        <li>
+          <a href="/articoli/dove-non-usare-ai/">Dove non usare l'AI</a>
+          <p>Come riconoscere quando uno strumento aggiunge un passaggio senza migliorare il lavoro.</p>
+        </li>
+      </ul>
+      <div class="cta-row">
+        <a class="button" href="/applicazioni/">Esplora le applicazioni AI</a>
+        <a class="button secondary" href="/articoli/">Leggi tutti gli articoli</a>
+      </div>
+    </section>
   </article>
-  <NewsletterBox compact />
+  <NewsletterBox compact preview />
 </BaseLayout>
+
+<style>
+  .about-page h1 { max-width: 16ch; font-size: clamp(2.8rem, 6vw, 5.5rem); }
+  .about-page h1,
+  .about-page h2,
+  .about-page h3 { line-height: 1.15; text-wrap: balance; overflow-wrap: anywhere; }
+  .about-page h2 { font-size: clamp(1.9rem, 4vw, 3.2rem); }
+  .about-page h3 { font-size: clamp(1.5rem, 2.5vw, 2rem); }
+  .about-page section[id] { scroll-margin-top: 1.5rem; }
+  .about-index { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-top: 1.5rem; }
+  .about-index a { display: inline-flex; align-items: center; min-height: 44px; }
+  .about-summary { max-width: 45rem; color: var(--muted); margin-bottom: 2rem; }
+  .about-principles p { margin-bottom: 0; }
+  .about-method-link { margin-top: 1.5rem; }
+  .about-reading h2 { margin-top: 0; }
+  .reading-list { padding: 0; margin-block: 2rem; list-style: none; }
+  .reading-list li { border-top: 1px solid var(--line); padding-block: 1rem; }
+  .reading-list a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; }
+  .reading-list p { margin: 0.35rem 0 0; }
+
+  @media (max-width: 980px) {
+    .about-principles { grid-template-columns: 1fr; }
+  }
+</style>

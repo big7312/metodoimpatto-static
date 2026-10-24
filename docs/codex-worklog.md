@@ -1,5 +1,47 @@
 # Metodo IMPATTO - Diario di lavoro Codex
 
+### 2026-10-24 - Chi sono: SEO, UI e UX
+
+- Presentazione in prima persona basata sull'approccio già espresso nel progetto: contesto, prove circoscritte, verifica e giudizio umano. Nome pubblico, ruolo ed esperienze non ancora confermati.
+- Metadati dedicati, indice accessibile, principi in schede responsive e tre letture esistenti; newsletter in anteprima.
+- Controllati canonical, singolo H1, ancore, focus da tastiera e assenza di overflow a 390 e 1440 px. Astro check: 0 errori e 0 warning.
+
+### 2026-10-24 - Newsletter: SEO, UI e UX
+
+- Titolo e descrizione dedicati, singolo H1 con nome della newsletter e proposta rivolta a piccole imprese e professionisti.
+- Eliminati duplicazione introduttiva e modulo disabilitato dalla pagina; stato di prossima apertura in evidenza e cadenza indicata come prevista.
+- Schede su caso, prompt e verifica, navigazione interna e collegamenti ad articoli e metodo. Nessun servizio di iscrizione attivato.
+- Build completata con 0 errori e 0 warning; controllati canonical, ancore, focus da tastiera e layout senza overflow a 390 e 1440 px.
+
+### 2026-10-24 - Elenco Articoli: SEO, UI e UX
+
+- Nessun articolo creato o modificato: mantenuti i cinque contenuti pubblicati e l'ordinamento per data.
+- Titolo e descrizione specifici, introduzione e indice; sezioni ultimo articolo/archivio con titoli gerarchici, date UTC, categorie e link con nome accessibile basato sul titolo.
+- Griglia a due colonne su desktop e una su mobile, inviti alla lettura allineati, collegamenti a metodo e applicazioni e newsletter in anteprima.
+- Build completata con 0 errori e 0 warning; verificati canonical, singolo H1, cinque schede, ancore, focus da tastiera e assenza di overflow a 390 e 1440 px.
+
+### 2026-10-24 - Pagina Applicazioni: SEO, UI e UX
+
+- Titolo, descrizione e H1 specifici; gerarchia H1/H2/H3 e indice per marketing, vendite e organizzazione.
+- Schede con prima prova, dati necessari e verifica; link agli articoli esistenti e criteri per scegliere il primo test con rimando al metodo.
+- Griglia responsive, ancore con destinazione focalizzabile e newsletter in anteprima. Nessuna nuova dipendenza.
+- Controllati canonical, metadati, ancore e assenza di overflow a 390 e 1440 px; Astro check senza errori o warning.
+
+### 2026-10-24 - Pagina Metodo: SEO, UI e UX
+
+- Titolo e descrizione dedicati, introduzione rivolta a piccole imprese e professionisti e indice con ancore accessibili.
+- Percorso verticale numerato, con risultato atteso per ciascuna fase; esempio illustrativo sulle risposte ai clienti e collegamenti ad applicazioni e articolo sul contesto.
+- Stili limitati alla pagina; la variante dettagliata di MethodSteps è usata solo qui. Newsletter in modalità anteprima senza form disabilitato.
+- Verificati singolo H1, canonical, sette passaggi, ancore, focus da tastiera e assenza di overflow a 390 e 1440 px. Diagnostica Astro: 0 errori e 0 warning.
+
+### 2026-10-24 - Homepage: SEO, UI e UX
+
+- Aggiunti titolo e descrizione specifici per il pubblico di piccole imprese e professionisti, link di approfondimento e date degli articoli.
+- CTA principale verso il metodo; in home la newsletter mostra lo stato di prossima apertura al posto del form disabilitato.
+- Card a larghezza piena, titolo iniziale più contenuto e passaggi del metodo su griglia adattiva; migliorati contrasto, focus da tastiera, indicazione della pagina corrente e preferenza per movimento ridotto.
+- Verifica: `npm run build` completato, 0 errori e 0 warning; controllati metadati, singolo H1, navigazione al metodo e assenza di overflow a 390 e 1440 px.
+- Restano da verificare sul dominio pubblicato indicizzazione, Search Console e prestazioni reali. Non sono presenti sitemap XML o robots.txt in `public/`; da gestire con un intervento SEO di sito.
+
 Ultimo aggiornamento: 2026-09-10
 
 Questo documento serve a tenere memoria delle decisioni prese, dei passaggi tecnici e dei prompt utili per riprendere il lavoro con Codex senza ricostruire ogni volta il contesto.
@@ -341,3 +383,19 @@ Perche:
 - rendere la pagina piu dinamica attraverso il colore, senza ridisegnare i componenti;
 - mantenere il blu indaco come identificativo principale e il corallo come accento;
 - usare il giallo solo come evidenziazione occasionale e non come colore dominante.
+
+### 2026-09-28 - Ritmo editoriale per home, articoli e metodo
+
+Cosa e stato fatto:
+
+- aumentato l'uso del corallo in label, indicatori e lettere della sequenza IMPATTO;
+- mantenuta l'alternanza cromatica della home con variazioni leggere tra card;
+- resa la pagina Articoli piu editoriale mettendo l'articolo piu recente in evidenza e mantenendo gli altri in griglia;
+- trasformata la sequenza dei sette passaggi nella pagina Metodo in un percorso visivo, con connettori responsive;
+- ridotto lo spazio tra introduzione e percorso nella pagina Metodo senza cambiare i contenuti.
+
+Perche:
+
+- aumentare il ritmo visivo con dettagli cromatici, senza introdurre immagini o un linguaggio da landing SaaS;
+- dare una gerarchia piu chiara ai contenuti editoriali;
+- rendere IMPATTO un elemento identitario ricorrente e leggibile anche su schermi piccoli.
