@@ -1,5 +1,14 @@
 # Metodo IMPATTO - Diario di lavoro Codex
 
+### 2026-10-24 - Performance e robots.txt
+
+- Lighthouse mobile sul sito Pages: Performance 69, SEO 92, FCP/LCP 3,1 s, CLS 0,413. Le cause misurate includono chiusura tardiva del menu e cambio font; `/robots.txt` restituiva la homepage HTML.
+- Lo stato iniziale del menu è ora applicato nel head prima del rendering, mantenendo navigazione visibile senza JavaScript.
+- Font ridotti ai caratteri latini e alla punteggiatura usata: 430.284 → 130.360 byte. Spostati in `src/assets/fonts/` per URL con hash, preload condivisi e cache immutabile su `/_astro/*`; fallback con metriche corrette per ridurre i cambi di layout.
+- Aggiunti robots.txt valido e favicon SVG. Dominio canonical conservato come configurato (`metodoimpatto.it`).
+- Prima verifica sulla build locale: Performance 94, SEO/Accessibilità 100, CLS 0; il confronto con produzione richiede un nuovo test dopo il deploy, perché rete e ambiente differiscono.
+- Verifica finale dopo il favicon: Performance 94, Accessibilità/Best Practices/SEO 100; FCP 0,9 s, LCP 1,7 s, TBT 230 ms e CLS 0. Build completa senza errori o warning, verificati font caricati, menu e layout desktop/mobile. Report Lighthouse conservati fuori dal repository negli artefatti della chat.
+
 ### 2026-10-24 - Menu hamburger mobile
 
 - Aggiunto nel layout condiviso un pulsante hamburger sotto i 981 px, con icona di chiusura, nome accessibile e `aria-expanded`/`aria-controls`.

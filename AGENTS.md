@@ -6,7 +6,7 @@
 - Identità, URL e navigazione: `src/consts.ts`; configurazione build: `astro.config.mjs`.
 - Stili e variabili condivise: `src/styles/global.css`; componenti riutilizzabili: `src/components/`.
 - Articoli: `src/content/articles/*.md`; schema: `src/content.config.ts`; elenco e dettaglio: `src/pages/articoli/`.
-- Asset statici e font: `public/`. Newsletter: `src/components/NewsletterBox.astro`, attualmente placeholder disabilitato per futura integrazione Brevo.
+- Asset statici: `public/`; font WOFF2 ridotti ai caratteri latini: `src/assets/fonts/`, importati da CSS e layout per URL versionati. Newsletter: `src/components/NewsletterBox.astro`, attualmente placeholder disabilitato per futura integrazione Brevo.
 
 ## Modifiche e contesto
 - Leggi prima i file coinvolti e cerca riferimenti/caller con `rg`; amplia l'esplorazione solo quando necessario.
