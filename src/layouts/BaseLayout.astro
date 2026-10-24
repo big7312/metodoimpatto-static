@@ -8,9 +8,10 @@ import headingFont from "../assets/fonts/Literata72pt-SemiBold.woff2?url";
 type Props = {
   title?: string;
   description?: string;
+  type?: "website" | "article";
 };
 
-const { title = SITE.title, description = SITE.description } = Astro.props;
+const { title = SITE.title, description = SITE.description, type = "website" } = Astro.props;
 const canonical = new URL(Astro.url.pathname, SITE.url);
 ---
 
@@ -27,10 +28,11 @@ const canonical = new URL(Astro.url.pathname, SITE.url);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    <slot name="head" />
   </head>
   <body>
     <a class="skip-link" href="#content">Salta al contenuto</a>

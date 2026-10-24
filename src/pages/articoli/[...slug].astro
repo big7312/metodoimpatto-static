@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import NewsletterBox from "../../components/NewsletterBox.astro";
 import { getCollection, render } from "astro:content";
+import { SITE } from "../../consts";
 
 export async function getStaticPaths() {
   const articles = (await getCollection("articles")).filter((article) => !article.data.draft);
@@ -12,18 +13,135 @@ export async function getStaticPaths() {
 }
 
 const { article } = Astro.props;
-const { Content } = await render(article);
+const { Content, headings } = await render(article);
+const sections = headings.filter((heading) => heading.depth === 2);
+const readingMinutes = Math.max(1, Math.ceil(article.body.trim().split(/\s+/u).length / 220));
+const published = article.data.pubDate.toISOString();
+const articleUrl = new URL(`/articoli/${article.slug}/`, SITE.url).href;
+const related = (await getCollection("articles"))
+  .filter((entry) => !entry.data.draft && entry.slug !== article.slug)
+  .sort((a, b) => Number(b.data.category === article.data.category) - Number(a.data.category === article.data.category)
+    || b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 2);
+const structuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": `${articleUrl}#article`,
+      mainEntityOfPage: articleUrl,
+      headline: article.data.title,
+      description: article.data.description,
+      datePublished: published,
+      articleSection: article.data.category,
+      inLanguage: "it-IT",
+      publisher: { "@type": "Organization", name: SITE.name, url: SITE.url }
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: new URL("/", SITE.url).href },
+        { "@type": "ListItem", position: 2, name: "Articoli", item: new URL("/articoli/", SITE.url).href },
+        { "@type": "ListItem", position: 3, name: article.data.title, item: articleUrl }
+      ]
+    }
+  ]
+}).replace(/</g, "\\u003c");
 ---
 
-<BaseLayout title={`${article.data.title} | Metodo IMPATTO`} description={article.data.description}>
-  <article class="prose">
+<BaseLayout title={`${article.data.title} | Metodo IMPATTO`} description={article.data.description} type="article">
+  <Fragment slot="head">
+    <meta property="article:published_time" content={published} />
+    <meta property="article:section" content={article.data.category} />
+    <script type="application/ld+json" is:inline set:html={structuredData} />
+  </Fragment>
+  <article class="reader" aria-labelledby="article-title">
+    <nav class="breadcrumbs" aria-label="Percorso di navigazione">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/articoli/">Articoli</a></li>
+        <li><span aria-current="page">Articolo</span></li>
+      </ol>
+    </nav>
+    <header class="reader-header">
     <p class="eyebrow">{article.data.category}</p>
-    <h1>{article.data.title}</h1>
+    <h1 id="article-title">{article.data.title}</h1>
     <p class="lead">{article.data.description}</p>
-    <time datetime={article.data.pubDate.toISOString()}>
-      {article.data.pubDate.toLocaleDateString("it-IT", { day: "2-digit", month: "long", year: "numeric" })}
+    <div class="reader-meta">
+    <time datetime={published}>
+      Pubblicato il {article.data.pubDate.toLocaleDateString("it-IT", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })}
     </time>
-    <Content />
+      <span>Circa {readingMinutes} {readingMinutes === 1 ? "minuto" : "minuti"} di lettura</span>
+    </div>
+    </header>
+    <div class="reader-content">
+      {sections.length > 1 && (
+        <details class="reader-index">
+          <summary>In questo articolo <span>({sections.length} sezioni)</span></summary>
+          <nav aria-label="Indice dell'articolo">
+            <ol>{sections.map((heading) => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ol>
+          </nav>
+        </details>
+      )}
+      <div class="reader-body"><Content /></div>
+      <footer class="reader-end">
+        <a href="#article-title">Torna al titolo</a>
+        <a href="/articoli/">Tutti gli articoli</a>
+      </footer>
+    </div>
   </article>
-  <NewsletterBox compact />
+  {related.length > 0 && (
+    <section class="reader-related" aria-labelledby="related-title">
+      <p class="eyebrow">Continua a leggere</p>
+      <h2 id="related-title">Altri spunti su AI e lavoro.</h2>
+      <div class="related-grid">
+        {related.map((entry) => (
+          <a class="article-card" href={`/articoli/${entry.slug}/`} aria-labelledby={`related-${entry.slug}`}>
+            <span class="tag">{entry.data.category}</span>
+            <h3 id={`related-${entry.slug}`}>{entry.data.title}</h3>
+            <p>{entry.data.description}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+  <NewsletterBox compact preview />
 </BaseLayout>
+
+<style>
+  .reader { padding-block: clamp(1.5rem, 4vw, 3rem); }
+  .breadcrumbs { max-width: 980px; margin: 0 auto 2rem; font-size: 0.9rem; }
+  .breadcrumbs ol { display: flex; flex-wrap: wrap; align-items: center; gap: 0.65rem; list-style: none; padding: 0; margin: 0; }
+  .breadcrumbs li + li::before { content: "/"; margin-right: 0.65rem; color: var(--muted); }
+  .breadcrumbs a { display: inline-flex; align-items: center; min-height: 44px; }
+  .reader-header { max-width: 980px; margin-inline: auto; }
+  .reader h1 { max-width: 27ch; font-size: clamp(2.1rem, 4.7vw, 4.2rem); line-height: 1.12; text-wrap: balance; overflow-wrap: anywhere; scroll-margin-top: 1.5rem; }
+  .reader-header .lead { max-width: 65ch; font-size: clamp(1.12rem, 2vw, 1.4rem); }
+  .reader-meta { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-block: 1.5rem 2.5rem; color: var(--muted); font-size: 0.9rem; }
+  .reader-content { max-width: 70ch; margin-inline: auto; }
+  .reader-index { margin-bottom: 2.5rem; border: 1px solid var(--line); border-radius: 20px; padding: 1rem 1.25rem; background: var(--paper-strong); }
+  .reader-index summary { cursor: pointer; font-weight: 700; min-height: 44px; align-content: center; }
+  .reader-index summary span { font-weight: 400; }
+  .reader-index summary:focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
+  .reader-index ol { padding-left: 1.25rem; margin-bottom: 0; }
+  .reader-index a { display: inline-flex; align-items: center; min-height: 44px; padding-block: 0.4rem; }
+  .reader-body { line-height: 1.75; }
+  .reader-body :global(p) { margin-block: 1.15rem; }
+  .reader-body :global(h2) { margin: 2.75rem 0 1rem; font-size: clamp(1.65rem, 3vw, 2.5rem); line-height: 1.2; scroll-margin-top: 1.5rem; overflow-wrap: anywhere; }
+  .reader-body :global(h3) { margin: 2rem 0 0.75rem; font-size: clamp(1.35rem, 2.5vw, 1.8rem); line-height: 1.25; scroll-margin-top: 1.5rem; }
+  .reader-body :global(blockquote) { margin: 1.5rem 0; padding: 0.5rem 1.25rem; border-left: 4px solid var(--accent); background: var(--paper-strong); }
+  .reader-body :global(ul), .reader-body :global(ol) { padding-left: 1.5rem; }
+  .reader-body :global(li + li) { margin-top: 0.5rem; }
+  .reader-body :global(a), .reader-body :global(code) { overflow-wrap: anywhere; }
+  .reader-body :global(pre) { max-width: 100%; overflow-x: auto; padding: 1rem; border-radius: 12px; }
+  .reader-body :global(table) { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; }
+  .reader-body :global(th), .reader-body :global(td) { padding: 0.6rem; border: 1px solid var(--line); }
+  .reader-end { display: flex; flex-wrap: wrap; gap: 1rem 2rem; margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+  .reader-end a { display: inline-flex; align-items: center; min-height: 44px; }
+  .reader-related { margin-block: 2rem 3rem; }
+  .reader-related h2 { margin-bottom: 1.5rem; font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.2; }
+  .related-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .related-grid h3 { font-size: clamp(1.4rem, 2vw, 1.8rem); line-height: 1.2; overflow-wrap: anywhere; }
+  .related-grid p { margin: 0; }
+  @media (max-width: 680px) { .related-grid { grid-template-columns: 1fr; } }
+</style>

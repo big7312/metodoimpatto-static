@@ -1,5 +1,13 @@
 # Metodo IMPATTO - Diario di lavoro Codex
 
+### 2026-10-24 - Template degli articoli: lettura e SEO
+
+- Titoli lunghi con dimensioni e larghezza dedicate; corpo a 70ch, interlinea, citazioni, elenchi e contenuti larghi con stili di lettura.
+- Breadcrumb, data UTC esplicitamente etichettata, tempo di lettura approssimato, indice nativo generato dagli H2 solo quando utile, ritorno al titolo e due articoli correlati esistenti.
+- Open Graph di tipo articolo, data/categoria e JSON-LD BlogPosting/BreadcrumbList coerenti con canonical e contenuto. Nessuna biografia, immagine o data di aggiornamento inventata.
+- Newsletter in anteprima. Markdown degli articoli invariati; nessuna dipendenza o JavaScript aggiunti per l'indice.
+- Build completa senza errori o warning; verificati cinque template generati, singolo H1, JSON-LD, canonical, presenza/assenza indice sugli articoli lunghi/brevi e otto ancore funzionanti nell'esempio. Controllati desktop/mobile e apertura da tastiera senza overflow.
+
 ### 2026-10-24 - Performance e robots.txt
 
 - Lighthouse mobile sul sito Pages: Performance 69, SEO 92, FCP/LCP 3,1 s, CLS 0,413. Le cause misurate includono chiusura tardiva del menu e cambio font; `/robots.txt` restituiva la homepage HTML.
