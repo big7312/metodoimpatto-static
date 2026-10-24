@@ -129,6 +129,22 @@ img {
   gap: 0.35rem;
 }
 
+.nav-toggle {
+  display: none;
+}
+
+.nav-icon-close {
+  display: none;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-icon-open {
+  display: none;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-icon-close {
+  display: block;
+}
+
 .site-nav a,
 .button,
 button {
@@ -582,6 +598,42 @@ small {
 }
 
 @media (max-width: 980px) {
+  .site-header {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .nav-toggle:not([hidden]) {
+    display: inline-flex;
+    gap: 0.5rem;
+    min-width: 44px;
+    min-height: 44px;
+    margin-left: auto;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .site-nav {
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: var(--paper);
+  }
+
+  .site-nav a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    border-radius: 12px;
+  }
+
+  .site-header[data-navigation="ready"] .nav-toggle[aria-expanded="false"] + .site-nav {
+    display: none;
+  }
+
   .hero,
   .split,
   .newsletter-panel {
@@ -606,7 +658,6 @@ small {
     font-size: 16px;
   }
 
-  .site-header,
   .site-footer {
     align-items: flex-start;
     flex-direction: column;
@@ -640,5 +691,17 @@ small {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-toggle-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 }

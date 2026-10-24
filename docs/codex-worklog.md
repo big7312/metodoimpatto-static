@@ -1,5 +1,11 @@
 # Metodo IMPATTO - Diario di lavoro Codex
 
+### 2026-10-24 - Menu hamburger mobile
+
+- Aggiunto nel layout condiviso un pulsante hamburger sotto i 981 px, con icona di chiusura, nome accessibile e `aria-expanded`/`aria-controls`.
+- Menu espandibile sotto il logo; chiusura con Escape, click esterno, scelta di un link e cambio breakpoint. Navigazione visibile senza JavaScript.
+- Verificati apertura/chiusura, ordine Tab e ritorno del focus con Escape, navigazione a Metodo, layout a 320/390/1440 px e build completa senza errori o warning.
+
 ### 2026-10-24 - Chi sono: SEO, UI e UX
 
 - Presentazione in prima persona basata sull'approccio già espresso nel progetto: contesto, prove circoscritte, verifica e giudizio umano. Nome pubblico, ruolo ed esperienze non ancora confermati.
